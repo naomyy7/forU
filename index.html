@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Cute Heart Animation</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            width: 30px;
+            /* Ukuran lebih kecil */
+            height: 30px;
+            /* Ukuran lebih kecil */
+            background-color: #FF0090;
+            /* Warna hati default */
+            transform: rotate(-45deg);
+            animation: moveUp 4s infinite;
+            /* Animasi lebih cepat */
+            opacity: 0.8;
+            /* Transparansi */
+            box-shadow: 0 0 10px rgba(255, 0, 144, 0.5);
+            /* Efek bayangan */
+            transition: transform 0.3s;
+            /* Efek transisi saat hover */
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            /* Ukuran lebih kecil */
+            height: 30px;
+            /* Ukuran lebih kecil */
+            background-color: inherit;
+            /* Menggunakan warna yang sama */
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -15px;
+            /* Disesuaikan dengan ukuran */
+            left: 0;
+        }
+
+        .heart:after {
+            left: 15px;
+            /* Disesuaikan dengan ukuran */
+            top: 0;
+        }
+
+        @keyframes moveUp {
+            0% {
+                transform: translateY(100vh) rotate(-45deg);
+            }
+
+            /* Mulai dari bawah */
+            100% {
+                transform: translateY(-10vh) rotate(-45deg);
+            }
+
+            /* Bergerak ke atas */
+        }
+
+        .heart:hover {
+            transform: scale(1.2) rotate(-45deg);
+            /* Efek zoom saat hover */
+        }
+
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            z-index: 10;
+            /* Agar tulisan di atas hati */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Menambahkan elemen audio untuk musik latar -->
+    <audio id="background-music" autoplay loop>
+        <source src="C:\Users\Asus\Downloads\sound1.mp3" type="audio/mpeg">
+        <source src="C:\Users\Asus\Downloads\sound1.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="message">
+        <h1>HEWOWW SAYANGG!! </h1>
+        <p>aku bangga bgttt sama kamu ayangie, tiap hari berusaha trus buat mencapai hal-hal yang kamu mauu.</p>
+        <p>aku senengg ngeliat kamu makin berkembang sayangg. i always proud of you ayangiee-chann. </p>
+        <p>The longer I'm with you, the more I love you. </p>
+        <p>See u in tuesday/wednesday ya saayanggg.</p>
+        <p>semoga hari ini dan seterusnya kamu diberi kemudahan dan kelancaran terus.. xixixi</p>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+
+            // Pilih warna secara acak
+            const colors = ['#FF0090', '#FF33CC'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            heart.style.backgroundColor = randomColor; // Set warna hati
+
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            document.body.appendChild(heart);
+
+            // Menghapus hati setelah animasi selesai
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        // Munculkan hati setiap 300 ms
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+
+</html>
